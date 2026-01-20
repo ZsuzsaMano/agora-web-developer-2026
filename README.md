@@ -38,3 +38,57 @@ Please don’t spend more than a few hours on this exercise; we’re more intere
 3. Open `http://localhost:5173` in your browser.
 
 This project uses React, TypeScript, Vite, and Tailwind CSS.
+
+## 📌 Notes on the Solution
+
+### 1. Code review / refactoring (PHP)
+
+See the attached document for my analysis and refactoring suggestions.
+
+The focus is on improving:
+
+- readability (reducing nested conditionals),
+- maintainability (centralizing repeated logic),
+- and separation of concerns (moving decision logic out of the template where possible),
+
+while preserving the existing behavior and security considerations (e.g. proper output escaping).
+
+### 2. Component design (UI / UX)
+
+The mock-ups were created in Figma and are structured across three pages:
+
+- Elements – basic UI building blocks such as colors, typography
+- Card – the team member card as a standalone component
+- List – different layouts showing how the cards can be displayed within a page
+
+Short comments were added directly in Figma to explain some design decisions.
+More detailed reasoning is best discussed in person, as many decisions depend on broader context.
+
+To make a final, data-informed design decision, access to Matomo analytics would be helpful, in particular:
+
+- which devices users most commonly use,
+- how often users click on cards or links,
+- and how users typically navigate the team section.
+
+Understanding actual user behavior would allow for more precise layout and interaction choices.
+For this exercise, the design intentionally prioritizes simplicity, clarity, and reusability.
+
+### 3. Implementation (frontend)
+
+The implementation uses React, TypeScript, Vite, and Tailwind CSS.
+
+- Team data is loaded from the provided team_data.json
+- The team member card is implemented as a reusable component
+- The list view renders cards by mapping over the data source
+- Styling follows a component-first approach and matches the Figma mock-up
+
+The goal of the implementation is not visual perfection, but to demonstrate:
+
+- clean component structure,
+- clear data flow,
+- and an approach that could be easily adapted to another framework (e.g. Angular).
+
+Instructions for running the project locally are included above.
+
+**NOTE:**  
+I used AI to structure and rephrase my thoughts into a readable format and style in the README.md file.
