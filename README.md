@@ -55,7 +55,8 @@ while preserving the existing behavior and security considerations (e.g. proper 
 
 ### 2. Component design (UI / UX)
 
-The mock-ups were created in Figma and are structured across three pages:
+The mock-ups were created in Figma and are structured across three pages:  
+https://www.figma.com/design/PfjXFBIVkEpDlVfgDFuwDk/Agora?node-id=2-4&m=dev&t=MFH1yi8V5d0mIcNa-1
 
 - Elements – basic UI building blocks such as colors, typography
 - Card – the team member card as a standalone component
