@@ -35,25 +35,14 @@ if ($isArchived) {
         
         <?php if ($publication['linkType'] == 1): ?>
             
-            <a href="<?= htmlspecialchars($publication['linkIntern']) ?>" class="publication__link">
+            <a href="<?= htmlspecialchars($url) ?>" class="publication__link">
                 <?= htmlspecialchars($publication['title']) ?>
-                <svg aria-hidden="true" focusable="false" class="icon publication__icon">
-                    <?php if (get_link_type($publication['linkIntern']) == 'url'): ?>
-                        <use xlink:href="#diagonal-arrow-right-up"></use>
-                    <?php else: ?>
+                <svg aria-hidden="true" focusable="false" class="icon publication__icon">    
+                        <use xlink:href=<?= $icon ?>></use>        
                         <use xlink:href="#arrow-forward"></use>
-                    <?php endif; ?>
                 </svg>
             </a>
-        <?php else: ?>
-            
-            <a href="<?= htmlspecialchars(get_publication_show_url($publication['uid'], $settings['publicationPid'])) ?>" class="publication__link">
-                <?= htmlspecialchars($publication['title']) ?>
-                <svg aria-hidden="true" focusable="false" class="icon publication__icon">
-                    <use xlink:href="#arrow-forward"></use>
-                </svg>
-            </a>
-        <?php endif; ?>
+      
   <!-- Is archieved -->
         
         <a href="<?= htmlspecialchars(get_publication_show_url($publication['uid'], $settings['archivedPublicationPid'])) ?>" class="publication__link">
