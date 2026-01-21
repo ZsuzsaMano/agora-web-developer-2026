@@ -48,71 +48,64 @@ $has_actions =
 ?>
 
 
-<?php if ($has_actions): ?>
+<?php
+$actions = [];
 
+if ($showPublicationLinks && $publication['pdf']) {
+    $actions[] = [
+        'url'   => $publication['pdf'],
+        'icon'  => '#download',
+        'title' => 'Download PDF',
+        'label' => 'Download PDF',
+    ];
+}
+
+if ($showPublicationLinks && $publication['htmlUrl']) {
+    $actions[] = [
+        'url'   => $publication['htmlUrl'],
+        'icon'  => '#external-link',
+        'title' => 'View online',
+        'label' => 'View online',
+    ];
+}
+
+if ($publication['contactEmail']) {
+    $actions[] = [
+        'url'   => get_email_link($publication['contactEmail']),
+        'icon'  => '#email',
+        'title' => 'E-mail contact',
+        'label' => 'E-Mail',
+    ];
+}
+
+if ($publication['supplementUrl']) {
+    $actions[] = [
+        'url'   => $publication['supplementUrl'],
+        'icon'  => '#attachment',
+        'title' => 'Supplementary material',
+        'label' => 'Supplementary material',
+    ];
+}
+?>
+
+<?php if ($has_actions): ?>
     <nav class="publication-actions">
         <ul class="publication-actions__menu">
-            
-            <?php if ($showPublicationLinks && $publication['pdf']): ?>
+       
                 <li class="publication-actions__menu-item">
                     <a class="publication-actions__link"
-                       href="<?= htmlspecialchars($publication['pdf']) ?>"
+                       href="<?= htmlspecialchars($action['url']) ?>"
                        target="_blank"
                        rel="noopener"
-                       title="Download PDF">
+                       title="<?= htmlspecialchars($action['title']) ?>">
                         <svg class="icon publication-actions__icon" aria-hidden="true" focusable="false">
-                            <use xlink:href="#download"></use>
+                      <use xlink:href="<?= $action['icon'] ?>"></use>
                         </svg>
-                        <span class="screen-reader-text">Download PDF</span>
+                        <span class="screen-reader-text">
+                            <?= htmlspecialchars($action['label']) ?>
+                        </span>
                     </a>
                 </li>
-            <?php endif; ?>
-
-            <?php if ($showPublicationLinks && $publication['htmlUrl']): ?>
-                <li class="publication-actions__menu-item">
-                    <a class="publication-actions__link"
-                       href="<?= htmlspecialchars($publication['htmlUrl']) ?>"
-                       target="_blank"
-                       rel="noopener"
-                       title="View online">
-                        <svg class="icon publication-actions__icon" aria-hidden="true" focusable="false">
-                            <use xlink:href="#external-link"></use>
-                        </svg>
-                        <span class="screen-reader-text">View online</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-
-            <?php if ($publication['contactEmail']): ?>
-                <li class="publication-actions__menu-item">
-                    <a class="publication-actions__link"
-                       href="<?= htmlspecialchars(get_email_link($publication['contactEmail'])) ?>"
-                       target="_blank"
-                       rel="noopener"
-                       title="E-mail contact">
-                        <svg class="icon publication-actions__icon" aria-hidden="true" focusable="false">
-                            <use xlink:href="#email"></use>
-                        </svg>
-                        <span class="screen-reader-text">E-Mail</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-
-            <?php if ($publication['supplementUrl']): ?>
-                <li class="publication-actions__menu-item">
-                    <a class="publication-actions__link"
-                       href="<?= htmlspecialchars($publication['supplementUrl']) ?>"
-                       target="_blank"
-                       rel="noopener"
-                       title="Supplementary material">
-                        <svg class="icon publication-actions__icon" aria-hidden="true" focusable="false">
-                            <use xlink:href="#attachment"></use>
-                        </svg>
-                        <span class="screen-reader-text">Supplementary material</span>
-                    </a>
-                </li>
-            <?php endif; ?>
-
         </ul>
     </nav>
 <?php endif; ?>
