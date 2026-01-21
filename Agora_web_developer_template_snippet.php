@@ -1,17 +1,8 @@
 <?php
-// Assume these helper functions are defined elsewhere (e.g., in functions.php)
-// function get_link_type($parameter) { ... } 
-// function get_publication_show_url($publication_uid, $page_uid) { ... }
-// function get_email_link($email) { ... }
-// Also assume $publication, $settings, and $showPublicationLinks are available in scope.
+require_once __DIR__ . '/render-publications.php';
 ?>
 
 
-<!-- This snippet is intentionally unrefactored and contains nested conditions.
-The task is to review, analyze, and suggest improvements in readability,
-maintainability, and structure. -->
-
-<!-- taking out logical parts: -->
 <?php 
 $isArchived = ($publication['pid'] == $settings['archivedPublicationsStoragePid']);
 $isLinkType1 = ($publication['linkType'] == 1);
@@ -47,65 +38,10 @@ $has_actions =
     $publication['contactEmail'];
 ?>
 
-
-<?php
-$actions = [];
-
-if ($showPublicationLinks && $publication['pdf']) {
-    $actions[] = [
-        'url'   => $publication['pdf'],
-        'icon'  => '#download',
-        'title' => 'Download PDF',
-        'label' => 'Download PDF',
-    ];
-}
-
-if ($showPublicationLinks && $publication['htmlUrl']) {
-    $actions[] = [
-        'url'   => $publication['htmlUrl'],
-        'icon'  => '#external-link',
-        'title' => 'View online',
-        'label' => 'View online',
-    ];
-}
-
-if ($publication['contactEmail']) {
-    $actions[] = [
-        'url'   => get_email_link($publication['contactEmail']),
-        'icon'  => '#email',
-        'title' => 'E-mail contact',
-        'label' => 'E-Mail',
-    ];
-}
-
-if ($publication['supplementUrl']) {
-    $actions[] = [
-        'url'   => $publication['supplementUrl'],
-        'icon'  => '#attachment',
-        'title' => 'Supplementary material',
-        'label' => 'Supplementary material',
-    ];
-}
-?>
-
 <?php if ($has_actions): ?>
     <nav class="publication-actions">
         <ul class="publication-actions__menu">
-       
-                <li class="publication-actions__menu-item">
-                    <a class="publication-actions__link"
-                       href="<?= htmlspecialchars($action['url']) ?>"
-                       target="_blank"
-                       rel="noopener"
-                       title="<?= htmlspecialchars($action['title']) ?>">
-                        <svg class="icon publication-actions__icon" aria-hidden="true" focusable="false">
-                      <use xlink:href="<?= $action['icon'] ?>"></use>
-                        </svg>
-                        <span class="screen-reader-text">
-                            <?= htmlspecialchars($action['label']) ?>
-                        </span>
-                    </a>
-                </li>
+          <?php render_publication_actions($publication, $showPublicationLinks); ?>
         </ul>
     </nav>
 <?php endif; ?>
