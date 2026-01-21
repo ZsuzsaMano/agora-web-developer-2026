@@ -31,19 +31,14 @@ if ($isArchived) {
 ?>
 
 
-<h2 class="publication__title">
-        
-        <?php if ($publication['linkType'] == 1): ?>
-            
+<h2 class="publication__title">         
             <a href="<?= htmlspecialchars($url) ?>" class="publication__link">
                 <?= htmlspecialchars($publication['title']) ?>
                 <svg aria-hidden="true" focusable="false" class="icon publication__icon">    
-                        <use xlink:href=<?= $icon ?>></use>        
-                        <use xlink:href="#arrow-forward"></use>
+                             <use xlink:href="<?= $icon ?>"></use>
                 </svg>
             </a>
 </h2>
-
 
 <?php 
 $has_actions = false;
