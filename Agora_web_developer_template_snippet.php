@@ -11,9 +11,27 @@
 The task is to review, analyze, and suggest improvements in readability,
 maintainability, and structure. -->
 
+<!-- taking out logical parts: -->
+<?php 
+$isArchived = ($publication['pid'] == $settings['archivedPublicationsStoragePid']);
+$isLinkType1 = ($publication['linkType'] == 1);
+
+if ($isArchived) {
+    $url = get_publication_show_url($publication['uid'], $settings['archivedPublicationPid']);
+    $icon = '#arrow-forward';
+} elseif ($isLinkType1) {
+    $url = $publication['linkIntern'];
+    $icon = get_link_type($publication['linkIntern']) === 'url'
+        ? '#diagonal-arrow-right-up'
+        : '#arrow-forward';
+} else {
+    $url = get_publication_show_url($publication['uid'], $settings['publicationPid']);
+    $icon = '#arrow-forward';
+}
+?>
+
 
 <h2 class="publication__title">
-    <?php if ($publication['pid'] != $settings['archivedPublicationsStoragePid']): ?>
         
         <?php if ($publication['linkType'] == 1): ?>
             
@@ -36,7 +54,7 @@ maintainability, and structure. -->
                 </svg>
             </a>
         <?php endif; ?>
-    <?php else: ?>
+  <!-- Is archieved -->
         
         <a href="<?= htmlspecialchars(get_publication_show_url($publication['uid'], $settings['archivedPublicationPid'])) ?>" class="publication__link">
             <?= htmlspecialchars($publication['title']) ?>
