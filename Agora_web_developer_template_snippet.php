@@ -30,7 +30,6 @@ if ($isArchived) {
 }
 ?>
 
-
 <h2 class="publication__title">         
             <a href="<?= htmlspecialchars($url) ?>" class="publication__link">
                 <?= htmlspecialchars($publication['title']) ?>
@@ -41,17 +40,11 @@ if ($isArchived) {
 </h2>
 
 <?php 
-$has_actions = false;
-
-if ($showPublicationLinks) {
-    if ($publication['pdf'] || $publication['htmlUrl'] || $publication['supplementUrl'] || $publication['contactEmail']) {
-        $has_actions = true;
-    }
-} else {
-    if ($publication['htmlUrl'] || $publication['supplementUrl'] || $publication['contactEmail']) {
-        $has_actions = true;
-    }
-}
+$has_actions =
+    ($showPublicationLinks && $publication['pdf']) ||
+    $publication['htmlUrl'] ||
+    $publication['supplementUrl'] ||
+    $publication['contactEmail'];
 ?>
 
 
