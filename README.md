@@ -48,10 +48,10 @@ See the attached document for my analysis and refactoring suggestions.
 The focus is on improving:
 
 - readability (reducing nested conditionals),
-- maintainability (centralizing repeated logic),
-- and separation of concerns (moving decision logic out of the template where possible),
+- maintainability (centralizing repeated logic) DRY,
+- and separation of concerns (moving decision logic out of the template),
 
-while preserving the existing behavior and security considerations (e.g. proper output escaping).
+I created a commit for each step of my progress on this task.
 
 ### 2. Component design (UI / UX)
 
