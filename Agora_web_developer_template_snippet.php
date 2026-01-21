@@ -42,16 +42,6 @@ if ($isArchived) {
                         <use xlink:href="#arrow-forward"></use>
                 </svg>
             </a>
-      
-  <!-- Is archieved -->
-        
-        <a href="<?= htmlspecialchars(get_publication_show_url($publication['uid'], $settings['archivedPublicationPid'])) ?>" class="publication__link">
-            <?= htmlspecialchars($publication['title']) ?>
-            <svg aria-hidden="true" focusable="false" class="icon publication__icon">
-                <use xlink:href="#arrow-forward"></use>
-            </svg>
-        </a>
-    <?php endif; ?>
 </h2>
 
 
